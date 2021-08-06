@@ -27,12 +27,13 @@ Exibe (destacando em verde) as alterações salvas no arquivo antes dele ser adi
 
 **git reset**
 
-Esse comando permite desfazer alguns comandos caso seja necessário. Para isso existem algumas opções que devem ser utilizadas para casos diferentes:
+Esse comando permite desfazer commits caso seja necessário. Para isso existem algumas opções que devem ser utilizadas em casos diferentes, mas em todos eles deve ser em mente o seguinte: é necessário informar o HASH anterior ao commit que deseja-se desfazer. 
 
 * **git reset HEAD 'file.ext'** - Remove o arquivo mencionado do stage.
-* **git reset --soft 'HASH'** - Desfaz o commit desejado, retornando o arquivo ao stage. Para isso, deve-se informar o HASH para o qual se deseja retornar. 
-* **git reset --mixed 'HASH'** - 
-* **git reset --hard 'HASH'** - 
+* **git reset --soft 'HASH'** - Desfaz o commit e retorna o arquivo ao stage, sem apagar do arquivo nenhuma alteração feita. Para isso, deve-se informar o HASH anterior ao commit que se deseja desfazer. Essa opção pode ser usada para casos em que seja necessário reescrever o comentário das mudanças que foram feitas desfeito. 
+Obs.: Quando é necessário desfazer dois ou mais commits através desse comando, o git conserva as modificações "na fila" exatamente como foram realizadas nos commits desfeitos. Ex.: Ao retornar dois commits, o git mantém no stage, prontas pra serem commitadas, as alterações feitas depois commit do HASH informado, e mantém fora do stage, porém também inalteradas, as modificações do último commit realizado. Isso possibilita alterar somente o comentário dos commits, sem modificar o histórico das alterações. Basta que seja feito o commit com a mensagem corrigida, uma nova adição ao stage e por fim o último commit (exatamente nessa ordem), garantindo assim o histórico anterior inalterado e as correções devidas nos comentários.
+* **git reset --mixed 'HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas.
+* **git reset --hard 'HASH'** - Desfaz o commit e apaga todas as modificações feitas no(s) commit(s) desfeitos. Deve ser utilizado com muito cuidado
 
 **git checkout 'file.ext'**
 
