@@ -7,7 +7,7 @@
  
  Esse comando é muito importante pois é com ele que podemos consultar de maneira detalhada tudo que foi feito no repositório, o que resulta na possibilidade de realizarmos o Controle de Versão. Esse comando exibe informações gerais sobre commits realizados no repositório. 
 
-#### Opções
+#### Opções de git log
 * *git log decorate* - Pesquisar finalidade!;
 * *git log --author "Name"* - lista todos os commits do autor citado;
 * *git shortlog* - lista todos os commits realizados por todos os autores de forma resumida
@@ -25,6 +25,10 @@ Exibe (destacando em verde) as alterações salvas no arquivo antes dele ser adi
 
  Descarta as alterações realizadas no arquivo mencionado no comando apagando **todas** as adições feitas no arquivo. Ao usar esse comando, é necessário estar certo de que nenhuma das alterações serão aproveitadas. Quando esse comando é usado com a opção _--staged_ o arquivo apenas será removido do stage mas suas modificações reais permanecerão intactas.
 
+ **git checkout 'file.ext'**
+
+Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função do *git restore 'file.ext'*.
+
 **git reset**
 
 Esse comando permite desfazer commits caso seja necessário. Para isso existem algumas opções que devem ser utilizadas em casos diferentes, mas em todos eles deve ser em mente o seguinte: é necessário informar o HASH anterior ao commit que deseja-se desfazer. 
@@ -35,10 +39,14 @@ Obs.: Quando é necessário desfazer dois ou mais commits através desse comando
 * **git reset --mixed 'HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas.
 * **git reset --hard 'HASH'** - Desfaz o commit e apaga todas as modificações feitas no(s) commit(s) desfeitos. Deve ser utilizado com muito cuidado
 
-**git checkout 'file.ext'**
+**git stash**
 
-Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função do *git restore 'file.ext'*.
+Esse é um comando muito conveniente em situações onde o usuário faz alterações em algum arquivo local e precisa pausar essas alterações para fazer um pull e atualizar o repositório local ou ainda criar uma nova branch onde essas alterações inicialmente não devem ser inseridas. Veja abaixo as opções para uso desse comando
 
+* **git stash** - remove temporariamente as alterações salvas em um arquivo, reservando-as em um arquivo que fica de "standby", aguardando o momento certo de serem aplicadas ao arquivo editado. Isso evita possíveis conflitos em repositórios desatualizados (por qualquer motivo que seja...) ao aplicar um *git pull*, sem que se perca toda evolução do trabalho já realizado antes da atualização do repositório, por exemplo;
+* **git stash apply** - "devolve" ao arquivo as alterações que estavam em standby;
+* **git stash list** - lista todos os stashs criados, identificando em qual branch foi originado.
+* **git stash clear** - limpa todos os stashs criados. Pode ser usado após aplicar as alterações que estavam guardadas.
 
 ## Trabalhando com Branchs
 
@@ -46,3 +54,4 @@ Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função 
 * Exibir branchs criadas no repositório local - **git branch**;
 * Acessar a branch onde se deseja trabalhar - **git checkout 'nome-da-branch'**;
 * Deletar branch - **git branch -D 'nome-da-branch'**;
+
