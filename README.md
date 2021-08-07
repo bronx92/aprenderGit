@@ -48,6 +48,7 @@ Esse é um comando muito conveniente em situações onde o usuário faz alteraç
 * **git stash list** - lista todos os stashs criados, identificando em qual branch foi originado.
 * **git stash clear** - limpa todos os stashs criados. Pode ser usado após aplicar as alterações que estavam guardadas.
 
+
 ## Trabalhando com Branchs
 
 * Criar uma branch - **git checkout -b 'nome-da-branch'**;
@@ -55,3 +56,8 @@ Esse é um comando muito conveniente em situações onde o usuário faz alteraç
 * Acessar a branch onde se deseja trabalhar - **git checkout 'nome-da-branch'**;
 * Deletar branch - **git branch -D 'nome-da-branch'**;
 
+
+## Usando Alias
+
+Alias são atalhos que podem ser criados para facilitar o trabalho, evitando digitação de comandos longos ou que precisem ser digitados constantemente. Para criar um atalho basta usar o comando **git config --global alias.nome-que-desejar comando-a-ser-mudado**.
+Ex.: *git config --global alias.s status* para digitar *git s* no lugar de *git status*.
