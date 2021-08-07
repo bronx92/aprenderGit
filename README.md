@@ -60,4 +60,4 @@ Esse é um comando muito conveniente em situações onde o usuário faz alteraç
 ## Usando Alias
 
 Alias são atalhos que podem ser criados para facilitar o trabalho, evitando digitação de comandos longos ou que precisem ser digitados constantemente. Para criar um atalho basta usar o comando **git config --global alias.nome-que-desejar comando-a-ser-mudado**.
-Ex.: *git config --global alias.s status* para digitar *git s* no lugar de *git status*.
+Ex.: *git config --global alias.s status* para digitar __*git s*__ no lugar de __*git status*__.
