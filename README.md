@@ -40,11 +40,15 @@ Obs.: Quando é necessário desfazer dois ou mais commits através desse comando
 * **git reset --mixed 'HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas.
 * **git reset --hard 'HASH'** - Desfaz o commit e apaga todas as modificações feitas no(s) commit(s) desfeitos. Deve ser utilizado com muito cuidado
 
+**git revert**
+
+Esse comando reverte as alterações realizadas no commit informado sem apagar o histórico de commits bem como os arquivos alterados nesse commit. Ele é ser útil quando um determinado commit precisa ser desfeito mas o usuário quer analisar as alterações desse commit. Para isso basta rodar o commando __*git revert 'HASH'*__.
+
 **git stash**
 
 Esse é um comando muito conveniente em situações onde o usuário faz alterações em algum arquivo local e precisa pausar essas alterações para fazer um pull e atualizar o repositório local ou ainda criar uma nova branch onde essas alterações inicialmente não devem ser inseridas. Veja abaixo as opções para uso desse comando
 
-* **git stash** - remove temporariamente as alterações salvas em um arquivo, reservando-as em um arquivo que fica de "standby", aguardando o momento certo de serem aplicadas ao arquivo editado. Isso evita possíveis conflitos em repositórios desatualizados (por qualquer motivo que seja...) ao aplicar um *git pull*, sem que se perca toda evolução do trabalho já realizado antes da atualização do repositório, por exemplo;
+* **git stash** - remove temporariamente as alterações salvas em um arquivo, reservando-as em "standby", aguardando o momento certo de serem reaplicadas ao arquivo editado. Isso evita possíveis conflitos em repositórios desatualizados (por qualquer motivo que seja...) quando o usuário aplica um *git pull*, sem que se perca toda evolução do trabalho já realizado antes da atualização do repositório;
 * **git stash apply** - "devolve" ao arquivo as alterações que estavam em standby;
 * **git stash list** - lista todos os stashs criados, identificando em qual branch foi originado.
 * **git stash clear** - limpa todos os stashs criados. Pode ser usado após aplicar as alterações que estavam guardadas.
@@ -55,10 +59,22 @@ Esse é um comando muito conveniente em situações onde o usuário faz alteraç
 * Criar uma branch - **git checkout -b 'nome-da-branch'**;
 * Exibir branchs criadas no repositório local - **git branch**;
 * Acessar a branch onde se deseja trabalhar - **git checkout 'nome-da-branch'**;
-* Deletar branch - **git branch -D 'nome-da-branch'**;
+* Deletar branch do repositório local - **git branch -D 'nome-da-branch'**;
+* Deletar branch do repositório remoto - **git push :'nome-da-branch'**.
 
 
 ## Usando Alias
 
 Alias são atalhos que podem ser criados para facilitar o trabalho, evitando digitação de comandos longos ou que precisem ser digitados constantemente. Para criar um atalho basta usar o comando **git config --global alias.nome-que-desejar comando-a-ser-mudado**.
 Ex.: *git config --global alias.s status* para digitar __*git s*__ no lugar de __*git status*__.
+
+
+## Versionando com Tags
+
+As Tags são utilizadas para realizar o versionamento (ou releases) do projeto. Veja abaixo como utilizar tags no git:
+
+* **git tag 'versao-que-desejar'** - cria uma tag;
+* **git tag 'versao-que-desejar' -a** - cria uma tag com um arquivo contendo uma anotação ou mensagem. No momento da criação da Tag o usuário pode definir a messagem do arquivo usando __-m "mensagem qualquer"__;
+* **git push origin main --tags** - subir as tags criadas para o repositório remoto;
+* **git tag -d 'versao-que-desejar'** - deleta a tag informada do repositório local;
+* **git push :'versao-que-desejar'** - deleta do repositório remoto a tag informada.
