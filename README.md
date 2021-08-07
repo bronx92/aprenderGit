@@ -1,7 +1,7 @@
 
 # Comandos Git
 
-## Veja abaixo os comandos mais básicos do Git
+## Veja abaixo alguns comandos básicos (porém muito úteis) do Git
 
 **git log**
  
@@ -38,3 +38,11 @@ Obs.: Quando é necessário desfazer dois ou mais commits através desse comando
 **git checkout 'file.ext'**
 
 Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função do *git restore 'file.ext'*.
+
+
+## Trabalhando com Branchs
+
+* Criar uma branch - **git checkout -b 'nome-da-branch'**;
+* Exibir branchs criadas no repositório local - **git branch**;
+* Acessar a branch onde se deseja trabalhar - **git checkout 'nome-da-branch'**;
+* Deletar branch - **git branch -D 'nome-da-branch'**;
