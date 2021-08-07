@@ -75,6 +75,6 @@ As Tags são utilizadas para realizar o versionamento (ou releases) do projeto. 
 
 * **git tag 'versao-que-desejar'** - cria uma tag;
 * **git tag 'versao-que-desejar' -a** - cria uma tag com um arquivo contendo uma anotação ou mensagem. No momento da criação da Tag o usuário pode definir a messagem do arquivo usando __-m "mensagem qualquer"__;
-* **git push origin main --tags** - subir as tags criadas para o repositório remoto;
+* **git push origin --tags** - subir as tags criadas para o repositório remoto;
 * **git tag -d 'versao-que-desejar'** - deleta a tag informada do repositório local;
-* **git push :'versao-que-desejar'** - deleta do repositório remoto a tag informada.
+* **git push origin :'versao-que-desejar'** - deleta do repositório remoto a tag informada.
