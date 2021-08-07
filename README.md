@@ -8,10 +8,11 @@
  Esse comando é muito importante pois é com ele que podemos consultar de maneira detalhada tudo que foi feito no repositório, o que resulta na possibilidade de realizarmos o Controle de Versão. Esse comando exibe informações gerais sobre commits realizados no repositório. 
 
 #### Opções de git log
-* *git log decorate* - Pesquisar finalidade!;
+* *git log --decorate* - formata a exibição do log para que facilite a visualização. É mais útil quando o projeto possui muitas Branchs e Tags, pois esse comando exibe de forma destacada a qual branch se refere cada commit, bem como as tags que cada commit possua;
 * *git log --author "Name"* - lista todos os commits do autor citado;
-* *git shortlog* - lista todos os commits realizados por todos os autores de forma resumida
-* *git log --graph* - mostra de forma gráfica os commits no repositório.
+* *git shortlog* - lista todos os commits realizados por todos os autores de forma curta;
+* *git log --graph* - mostra de forma gráfica os commits no repositório;
+* *git log --oneline* - mostra cada commit resumidos em 1 linha.
 
 **git show 'HASH'**
 
@@ -34,7 +35,7 @@ Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função 
 Esse comando permite desfazer commits caso seja necessário. Para isso existem algumas opções que devem ser utilizadas em casos diferentes, mas em todos eles deve ser em mente o seguinte: é necessário informar o HASH anterior ao commit que deseja-se desfazer. 
 
 * **git reset HEAD 'file.ext'** - Remove o arquivo mencionado do stage.
-* **git reset --soft 'HASH'** - Desfaz o commit e retorna o arquivo ao stage, sem apagar do arquivo nenhuma alteração feita. Para isso, deve-se informar o HASH anterior ao commit que se deseja desfazer. Essa opção pode ser usada para casos em que seja necessário reescrever o comentário das mudanças que foram feitas desfeito. 
+* **git reset --soft 'HASH'** - Desfaz o commit e retorna o arquivo ao stage, sem apagar do arquivo nenhuma alteração feita. Para isso, deve-se informar o HASH anterior ao commit que se deseja desfazer. Essa opção também pode ser usada para casos em que seja necessário reescrever o comentário sobre as mudanças feitas. 
 Obs.: Quando é necessário desfazer dois ou mais commits através desse comando, o git conserva as modificações "na fila" exatamente como foram realizadas nos commits desfeitos. Ex.: Ao retornar dois commits, o git mantém no stage, prontas pra serem commitadas, as alterações feitas depois commit do HASH informado, e mantém fora do stage, porém também inalteradas, as modificações do último commit realizado. Isso possibilita alterar somente o comentário dos commits, sem modificar o histórico das alterações. Basta que seja feito o commit com a mensagem corrigida, uma nova adição ao stage e por fim o último commit (exatamente nessa ordem), garantindo assim o histórico anterior inalterado e as correções devidas nos comentários.
 * **git reset --mixed 'HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas.
 * **git reset --hard 'HASH'** - Desfaz o commit e apaga todas as modificações feitas no(s) commit(s) desfeitos. Deve ser utilizado com muito cuidado
