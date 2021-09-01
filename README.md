@@ -35,7 +35,7 @@ Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função 
 Esse comando permite desfazer commits caso seja necessário. Para isso existem algumas opções que devem ser utilizadas em casos diferentes, mas em todos eles deve ser em mente o seguinte: é necessário informar o HASH anterior ao commit que deseja-se desfazer. 
 
 * **git reset 'iniciais da HASH'** - Desfaz o commit mencionado;
-* **git reset HEAD~1** - Esse comando diz extamente o seguinte: encontre o último commit e desfaça o commit anterior. Caso seja mudado o número para 2, por exemplo, ele vai desfazer os últimos 2 commits e assim por diante;
+* **git reset HEAD~1** - Esse comando diz extamente o seguinte: encontre o último commit e desfaça o commit anterior. Caso seja mudado o número para 2, por exemplo, ele vai desfazer os últimos 2 commits anteriores ao HEAD e assim por diante;
 
 Esses comandos mencionados acima apenas desfazem os commits mas não alteram os estados dos arquivos. Para fazê-lo existem outras maneiras, dentre elas existem as flags --soft e --mixed.
 
