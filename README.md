@@ -3,7 +3,7 @@
 
 ## Veja abaixo alguns comandos básicos (porém muito úteis) do Git
 
-**git log**
+### **git log**
  
  Esse comando é muito importante pois é com ele que podemos consultar de maneira detalhada tudo que foi feito no repositório, o que resulta na possibilidade de realizarmos o Controle de Versão. Esse comando exibe informações gerais sobre commits realizados no repositório. 
 
@@ -14,37 +14,50 @@
 * *git log --graph* - mostra de forma gráfica os commits no repositório;
 * *git log --oneline* - mostra cada commit resumidos em 1 linha.
 
-**git show 'HASH'**
+### **git show 'HASH'**
 
  Esse comando mostra as modificações de forma mais detalhada em um commit específico, definido pelo HASH .
 
- **git diff**
+ ### **git diff**
 
 Exibe (destacando em verde) as alterações salvas no arquivo antes dele ser adicionado ao stage. É uma maneira de conferir o que foi feito antes do commit. Pode ser utilizado com a opção *--name-only*, que exibe somente o nome dos aquivos modificados, o que se torna útil caso o repositório tenha uma lista grande de arquivos e seja necessário saber quais foram modificados.
 
-**git restore 'file.ext'**
+### **git restore 'file.ext'**
 
  Descarta as alterações realizadas no arquivo mencionado no comando apagando **todas** as adições feitas no arquivo. Ao usar esse comando, é necessário estar certo de que nenhuma das alterações serão aproveitadas. Quando esse comando é usado com a opção _--staged_ o arquivo apenas será removido do stage mas suas modificações reais permanecerão intactas.
 
- **git checkout 'file.ext'**
+### **git checkout 'file.ext'**
 
 Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função do *git restore 'file.ext'*.
 
-**git reset**
+### **git reset**
 
 Esse comando permite desfazer commits caso seja necessário. Para isso existem algumas opções que devem ser utilizadas em casos diferentes, mas em todos eles deve ser em mente o seguinte: é necessário informar o HASH anterior ao commit que deseja-se desfazer. 
 
-* **git reset HEAD 'file.ext'** - Remove o arquivo mencionado do stage.
-* **git reset --soft 'HASH'** - Desfaz o commit e retorna o arquivo ao stage, sem apagar do arquivo nenhuma alteração feita. Para isso, deve-se informar o HASH anterior ao commit que se deseja desfazer. Essa opção também pode ser usada para casos em que seja necessário reescrever o comentário sobre as mudanças feitas. 
-Obs.: Quando é necessário desfazer dois ou mais commits através desse comando, o git conserva as modificações "na fila" exatamente como foram realizadas nos commits desfeitos. Ex.: Ao retornar dois commits, o git mantém no stage, prontas pra serem commitadas, as alterações feitas depois commit do HASH informado, e mantém fora do stage, porém também inalteradas, as modificações do último commit realizado. Isso possibilita alterar somente o comentário dos commits, sem modificar o histórico das alterações. Basta que seja feito o commit com a mensagem corrigida, uma nova adição ao stage e por fim o último commit (exatamente nessa ordem), garantindo assim o histórico anterior inalterado e as correções devidas nos comentários.
-* **git reset --mixed 'HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas.
-* **git reset --hard 'HASH'** - Desfaz o commit e apaga todas as modificações feitas no(s) commit(s) desfeitos. Deve ser utilizado com muito cuidado
+* **git reset 'iniciais da HASH'** - Desfaz o commit mencionado;
+* **git reset HEAD~1** - Esse comando diz extamente o seguinte: encontre o último commit e desfaça o commit anterior. Caso seja mudado o número para 2, por exemplo, ele vai desfazer os últimos 2 commits e assim por diante;
 
-**git revert**
+Esses comandos mencionados acima apenas desfazem os commits mas não alteram os estados dos arquivos. Para fazê-lo existem outras maneiras, dentre elas existem as flags --soft e --mixed.
 
-Esse comando reverte as alterações realizadas no commit informado sem apagar o histórico de commits bem como os arquivos alterados nesse commit. Ele é ser útil quando um determinado commit precisa ser desfeito mas o usuário quer analisar as alterações desse commit. Para isso basta rodar o commando __*git revert 'iniciais da HASH'*__.
+* **git reset 'file.ext'** - Remove o arquivo do Stage colocando-o novamente no estado de untracked ou modified. Caso a alteração no arquivo já tenha sido commitada, esse comando não funciona;
+* **git reset --soft 'iniciais da HASH'** - Desfaz o commit e retorna o arquivo ao stage, sem apagar do arquivo nenhuma alteração feita. Para isso, deve-se informar o HASH anterior ao commit que se deseja desfazer. Essa opção também pode ser usada para casos em que seja necessário reescrever o comentário sobre as mudanças feitas. 
+Obs.: Quando é necessário desfazer dois ou mais commits através desse comando, o git conserva as modificações "na fila" exatamente como foram realizadas nos commits desfeitos. Ex.: Ao retornar dois commits, o git mantém no stage, prontas pra serem commitadas, as alterações feitas depois commit do HASH informado, e mantém fora do stage, porém também inalteradas, as modificações do último commit realizado. Isso possibilita alterar somente o comentário dos commits, sem modificar o histórico das alterações. Basta que seja feito o commit com a mensagem corrigida, uma nova adição ao stage e por fim o último commit (exatamente nessa ordem), garantindo assim o histórico anterior inalterado e as correções devidas nos comentários;
+* **git reset --mixed 'iniciais da HASH'** - Desfaz o(s) commit(s) e retorna o arquivo ao ao estado *modified*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas;
 
-**git stash**
+Já a flag *__--hard__* Desfaz o commit e apaga todas as modificações daquele commit. Deve ser utilizado com muito cuidado pois arquivos podem ser destruídos. É executado da seguinte maneira:
+
+* **git reset --hard 'iniciais da HASH'**.
+
+
+
+### **git revert**
+
+Esse comando afeta somente os commits e os arquivos, sem alterar os estados dos arquivos. ELe reverte as alterações realizadas no commit informado sem apagar o histórico de commits, para isso ele cria outro commit e armazena as informações do commit desfeito, como HASH e arquivos afetados. Isso pode apagar arquivos, caso um novo arquivo tenha sido adicionado no commit desfeito. Ele pode ser útil quando um determinado commit precisa ser desfeito mas o usuário deseja manter as informações das alterações daquele commit. Pode ser usado das seguintes formas:
+
+* **git revert 'iniciais da HASH'** - Revert o commit mencionado;
+* **git revert HEAD~1** - funciona exatamente como o reset HEAD~1.
+
+### **git stash**
 
 Esse é um comando muito conveniente em situações onde o usuário faz alterações em algum arquivo local e precisa pausar essas alterações para fazer um pull e atualizar o repositório local ou ainda criar uma nova branch onde essas alterações inicialmente não devem ser inseridas. Veja abaixo as opções para uso desse comando
 
