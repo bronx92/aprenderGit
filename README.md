@@ -42,7 +42,7 @@ Obs.: Quando é necessário desfazer dois ou mais commits através desse comando
 
 **git revert**
 
-Esse comando reverte as alterações realizadas no commit informado sem apagar o histórico de commits bem como os arquivos alterados nesse commit. Ele é ser útil quando um determinado commit precisa ser desfeito mas o usuário quer analisar as alterações desse commit. Para isso basta rodar o commando __*git revert 'HASH'*__.
+Esse comando reverte as alterações realizadas no commit informado sem apagar o histórico de commits bem como os arquivos alterados nesse commit. Ele é ser útil quando um determinado commit precisa ser desfeito mas o usuário quer analisar as alterações desse commit. Para isso basta rodar o commando __*git revert 'iniciais da HASH'*__.
 
 **git stash**
 
