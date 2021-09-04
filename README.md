@@ -8,6 +8,7 @@
  Esse comando é muito importante pois é com ele que podemos consultar de maneira detalhada tudo que foi feito no repositório, o que resulta na possibilidade de realizarmos o Controle de Versão. Esse comando exibe informações gerais sobre commits realizados no repositório. 
 
 #### Opções de git log
+* *git log 'directory_name ou file_name'* - acessa o log de uma pasta ou arquivo específico;
 * *git log --decorate* - formata a exibição do log para que facilite a visualização. É mais útil quando o projeto possui muitas Branchs e Tags, pois esse comando exibe de forma destacada a qual branch se refere cada commit, bem como as tags que cada commit possua;
 * *git log --author "Name"* - lista todos os commits do autor citado;
 * *git shortlog* - lista todos os commits realizados por todos os autores de forma curta;
@@ -59,12 +60,16 @@ Esse comando afeta somente os commits e os arquivos, sem alterar os estados dos 
 
 ### **git stash**
 
-Esse é um comando muito conveniente em situações onde o usuário faz alterações em algum arquivo local e precisa pausar essas alterações para fazer um pull e atualizar o repositório local ou ainda criar uma nova branch onde essas alterações inicialmente não devem ser inseridas. Veja abaixo as opções para uso desse comando
+Pode ser necessário transitar entre as branchs do seu repositorio local. Ao mudar de branch, todos os arquivos modificados e tudo que foi adicionado ao stage da branch anterior é adicionado à branch acessada. Isso pode ser um problema em casos em que determinados arquivos de uma branch não devem ser adicionados à nenhuma outra. Para evitar situações como essa podemos usar o git stash. Esse é um comando muito conveniente também em situações onde o usuário faz alterações em algum arquivo local e precisa pausar essas alterações para fazer um pull e atualizar o repositório local. Ele funciona como um array, em que o último stash é posicionado no índice zero e "empurra" os anteriores para o próximo índice, indo de zero a infinito. Veja abaixo as opções para uso desse comando
 
 * **git stash** - remove temporariamente as alterações salvas em um arquivo, reservando-as em "standby", aguardando o momento certo de serem reaplicadas ao arquivo editado. Isso evita possíveis conflitos em repositórios desatualizados (por qualquer motivo que seja...) quando o usuário aplica um *git pull*, sem que se perca toda evolução do trabalho já realizado antes da atualização do repositório;
 * **git stash apply** - "devolve" ao arquivo as alterações que estavam em standby;
-* **git stash list** - lista todos os stashs criados, identificando em qual branch foi originado.
-* **git stash clear** - limpa todos os stashs criados. Pode ser usado após aplicar as alterações que estavam guardadas.
+* **git stash list** - lista todos os stashs criados, identificando em qual branch foi originado;
+* **git stash clear** - limpa todos os stashs criados. Pode ser usado após aplicar as alterações que estavam guardadas;
+* **git stash pop 1** (o número 1 representa o índice que você desejar) - remove arquivos do stash definindo pelo índice desejado.
+
+Ao criar um ou vários stashs e acessar outra branch, pode ser que demore até que se possa retornar ao que estava sendo feito e foi salvo no stash. Nesses casos, existe a possibilidade de darmos um contexto à stash criada:
+*git stash save "Texto informando o que estava fazendo antes de adicionar o arquivo ao stash"*.
 
 
 ## Trabalhando com Branchs
