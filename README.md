@@ -32,7 +32,7 @@ Descarta as alterações realizadas no arquivo mencionado. Tem a mesma função 
 
 ### **git reset**
 
-Esse comando permite desfazer commits quando necessário. O comportamento padrão desse comando é desfazer os commits e alterar o estado dosPara isso existem algumas opções que devem ser utilizadas em casos diferentes. 
+Esse comando permite desfazer commits quando necessário. O comportamento padrão desse comando é desfazer os commits e alterar o estado dos arquivos. Existem também algumas opções que devem ser utilizadas em situações diferentes. 
 
 * **git reset 'iniciais da HASH'** - Desfaz o commit mencionado;
 * **git reset HEAD~1** - Esse comando diz extamente o seguinte: encontre o último commit e desfaça o commit anterior. Caso seja mudado o número para 2, por exemplo, ele vai desfazer os últimos 2 commits anteriores ao HEAD e assim por diante;
@@ -44,7 +44,7 @@ Esses comandos mencionados acima apenas desfazem os commits mas não alteram os 
 Obs.: Quando é necessário desfazer dois ou mais commits através desse comando, o git conserva as modificações "na fila" exatamente como foram realizadas nos commits desfeitos. Ex.: Ao retornar dois commits, o git mantém no stage, prontas pra serem commitadas, as alterações feitas depois commit do HASH informado, e mantém fora do stage, porém também inalteradas, as modificações do último commit realizado. Isso possibilita alterar somente o comentário dos commits, sem modificar o histórico das alterações. Basta que seja feito o commit com a mensagem corrigida, uma nova adição ao stage e por fim o último commit (exatamente nessa ordem), garantindo assim o histórico anterior inalterado e as correções devidas nos comentários;
 * **git reset --mixed 'iniciais da HASH'** - Este é o comportamento padrão do comando **git reset** caso seja utilizado sem as flags mencionadas. Ele desfaz o(s) commit(s) e retorna o arquivo ao aos estados *modified* ou *unteacked*, ou seja, antes de ser adicionado ao stage. Assim como o soft, não apaga do arquivo as alterações feitas. Essa opção pode ser usada para casos em seja necessário revisar ou refazer as alterações e/ou adições que possam estar incorretas;
 
-Já a flag *__--hard__* Desfaz o commit e apaga todas as modificações daquele commit. Deve ser utilizado com muito cuidado pois arquivos podem ser destruídos. É executado da seguinte maneira:
+Já a flag *__--hard__* Desfaz o commit e apaga todas as modificações daquele commit. Deve ser utilizado com muito cuidado pois arquivos podem ser destruídos, afetando todos os usuários que trabalham nesse repositório. É executado da seguinte maneira:
 
 * **git reset --hard 'iniciais da HASH'**.
 
